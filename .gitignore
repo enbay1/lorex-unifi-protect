@@ -1,0 +1,15 @@
+# Secrets / keys — never commit
+*.pem
+*.key
+*.csr
+*.p12
+*.pfx
+
+# Build noise / vendored upstream
+build.log
+src/
+node_modules/
+
+# Local env
+*.env
+.env

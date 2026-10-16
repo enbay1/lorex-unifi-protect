@@ -1,0 +1,34 @@
+# onvif-server config template for one recorder channel.
+# deploy-cameras.sh fills in <CHANNEL>, <MAC>, <UUID>, and <RECORDER_IP>.
+# The RTSP path is the Dahua/Lorex format: /cam/realmonitor?channel=N&subtype=0
+# (subtype 0 = main stream, subtype 1 = sub stream). This file has NO credentials;
+# enter the recorder account in UniFi Protect when you adopt the camera.
+onvif:
+  - mac: <MAC>
+    ports:
+      server: 80
+      rtsp: 8554
+      snapshot: 8580
+    name: Camera<CHANNEL>
+    uuid: <UUID>
+    highQuality:
+      rtsp: "/cam/realmonitor?channel=<CHANNEL>&subtype=0"
+      snapshot: "/onvif/snapshot?channel=<CHANNEL>&subtype=0"
+      width: 3840
+      height: 2160
+      framerate: 15
+      bitrate: 8192
+      quality: 4
+    lowQuality:
+      rtsp: "/cam/realmonitor?channel=<CHANNEL>&subtype=1"
+      snapshot: "/onvif/snapshot?channel=<CHANNEL>&subtype=1"
+      width: 704
+      height: 480
+      framerate: 15
+      bitrate: 512
+      quality: 1
+    target:
+      hostname: <RECORDER_IP>
+      ports:
+        rtsp: 554
+        snapshot: 80
